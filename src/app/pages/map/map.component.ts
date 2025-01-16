@@ -13,7 +13,7 @@ import { WhaleService } from '../../services/whaleapi/whaleapi.service';
 export class MapComponent implements AfterViewInit {
   isBrowser: boolean;
   whalesList: WhaleInterface[] = [];
-
+ 
   constructor(@Inject(PLATFORM_ID) private platformId: Object, private whaleApi: WhaleService) {
     this.isBrowser = isPlatformBrowser(platformId);
   }
