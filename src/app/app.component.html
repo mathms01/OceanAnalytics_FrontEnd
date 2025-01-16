@@ -1,10 +1,10 @@
 
 <!-- Top Toolbar -->
 <mat-toolbar color="primary" class="toolbar">
-  <button mat-icon-button (click)="toggleSidebar(sidenav)">
+  <button mat-mini-fab (click)="toggleSidebar(sidenav)">
     <mat-icon>menu</mat-icon>
   </button>
-  <h1>Ocean Analytics</h1>
+  <h1 class="custom-spacing">Ocean Analytics</h1>
 </mat-toolbar>
 
 <!-- Side Navigation Container -->
@@ -16,13 +16,17 @@
     [(opened)]="isExpanded"
     class="sidenav"
   >
-    <mat-nav-list>
-      <a mat-list-item routerLink="/home" routerLinkActive="active" (click)="closeSidebar()">
-        <mat-icon>home</mat-icon> Home
-      </a>
-      <a mat-list-item routerLink="/map" routerLinkActive="active" (click)="closeSidebar()">
+    <mat-nav-list class="list-with-gap">
+      <li mat-list-item>
+        <button mat-fab extended routerLink="/home" routerLinkActive="active" (click)="closeSidebar()" class="fixed-width-button">
+          <mat-icon>home</mat-icon> Home
+        </button>
+      </li>
+      <li mat-list-item>      
+        <button mat-fab extended routerLink="/map" routerLinkActive="active" (click)="closeSidebar()" class="fixed-width-button">
         <mat-icon>map</mat-icon> Map
-      </a>
+      </button>
+    </li>
     </mat-nav-list>
   </mat-sidenav>
 
