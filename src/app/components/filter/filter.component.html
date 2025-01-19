@@ -1,0 +1,26 @@
+<div class="filter-container" [formGroup]="filterForm">
+    <mat-form-field appearance="fill">
+      <mat-label>Scientific Name</mat-label>
+      <input matInput placeholder="Enter scientific name" formControlName="scientificName" />
+    </mat-form-field>
+  
+    <mat-form-field appearance="fill">
+      <mat-label>Event Date</mat-label>
+      <input matInput [matDatepicker]="picker" placeholder="Choose a date" formControlName="eventDate" />
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+  
+    <mat-form-field appearance="fill">
+      <mat-label>Latitude</mat-label>
+      <input matInput placeholder="Enter latitude" type="number" formControlName="latitude" />
+    </mat-form-field>
+  
+    <mat-form-field appearance="fill">
+      <mat-label>Longitude</mat-label>
+      <input matInput placeholder="Enter longitude" type="number" formControlName="longitude" />
+    </mat-form-field>
+  
+    <button mat-raised-button color="primary" (click)="applyFilters()">Apply Filters</button>
+    <button mat-button color="warn" (click)="resetFilters()">Reset</button>
+  </div>

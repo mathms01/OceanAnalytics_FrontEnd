@@ -7,10 +7,11 @@ import { TooltipComponent } from '../../components/tooltip/tooltip.component';
 import Feature from 'ol/Feature';
 import Point from 'ol/geom/Point';
 import { fromLonLat } from 'ol/proj';
+import { FilterComponent } from '../../components/filter/filter.component';
 
 @Component({
   selector: 'app-map',
-  imports: [AngularOpenlayersModule, NgIf, TooltipComponent, NgFor],
+  imports: [AngularOpenlayersModule, NgIf, TooltipComponent, NgFor, FilterComponent],
   templateUrl: './map.component.html',
   styleUrl: './map.component.scss',
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
@@ -69,6 +70,28 @@ export class MapComponent implements AfterViewInit {
     }
   }
 
+  onFiltersChanged(filters: any): void {
+    console.log('Filters applied:', filters);
+    
+    const { scientificName, eventDate, latitude, longitude } = filters;
+  
+    const queryParams: any = {};
+    if (scientificName) queryParams.scientificName = scientificName;
+    if (eventDate) queryParams.eventDate = eventDate;
+    if (latitude) queryParams.latitude = latitude;
+    if (longitude) queryParams.longitude = longitude;
+  
+    this.whaleApi.getWhalesWithFilters(queryParams).subscribe({
+      next: (data) => {
+        this.whalesList = data;
+        this.createFeatures();
+
+        this.addTooltipHandling();
+        this.cdr.detectChanges();
+      },
+      error: (err) => console.error(err),
+    });
+  }
   
   private createFeatures(): void {
     this.features = this.whalesList.map((whale) => {
