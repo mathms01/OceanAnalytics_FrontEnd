@@ -85,13 +85,11 @@
     box-sizing: border-box;
   }
   
-  /* Sidenav container takes full height minus the toolbar */
   .sidenav-container {
-    height: calc(100vh - 64px); /* Full viewport height minus toolbar height */
+    height: calc(100vh - 64px); 
     display: flex;
   }
   
-  /* Sidebar styling */
   .sidenav {
     width: 175px;
   }

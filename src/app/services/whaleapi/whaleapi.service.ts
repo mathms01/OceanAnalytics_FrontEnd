@@ -18,6 +18,8 @@ export class WhaleService {
   getWhalesWithFilters(queryParams: any): Observable<WhaleInterface[]> {
     const params = this.setParameter(queryParams);
 
+    console.log(params);
+
     return this.http.get<WhaleInterface[]>(baseUrl, { params });
   }
 
@@ -25,7 +27,7 @@ export class WhaleService {
     let queryParams = new HttpParams();
     for (const key in routerParams) {
       if (routerParams.hasOwnProperty(key) && routerParams[key] !== null) {
-        queryParams = queryParams.set(key, routerParams[key]);
+        queryParams=queryParams.set(key, routerParams[key]);
       }
     }
     return queryParams;

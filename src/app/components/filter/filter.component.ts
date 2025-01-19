@@ -4,7 +4,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatNativeDateModule } from '@angular/material/core';
+import { MatNativeDateModule, provideNativeDateAdapter } from '@angular/material/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
@@ -12,6 +12,7 @@ import { CommonModule } from '@angular/common';
   selector: 'filter',
   templateUrl: './filter.component.html',
   styleUrls: ['./filter.component.scss'],
+  providers: [provideNativeDateAdapter()],
   standalone: true,
   imports: [
     CommonModule,

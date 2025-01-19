@@ -5,20 +5,21 @@
     </mat-form-field>
   
     <mat-form-field appearance="fill">
-      <mat-label>Event Date</mat-label>
+      <mat-label>Date</mat-label>
       <input matInput [matDatepicker]="picker" placeholder="Choose a date" formControlName="eventDate" />
-      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-hint>MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
   
     <mat-form-field appearance="fill">
       <mat-label>Latitude</mat-label>
-      <input matInput placeholder="Enter latitude" type="number" formControlName="latitude" />
+      <input matInput placeholder="Enter latitude" type="number" step=".01" formControlName="latitude" />
     </mat-form-field>
   
     <mat-form-field appearance="fill">
       <mat-label>Longitude</mat-label>
-      <input matInput placeholder="Enter longitude" type="number" formControlName="longitude" />
+      <input matInput placeholder="Enter longitude" type="number" step=".01" formControlName="longitude" />
     </mat-form-field>
   
     <button mat-raised-button color="primary" (click)="applyFilters()">Apply Filters</button>
