@@ -34,7 +34,6 @@ export class MapComponent implements AfterViewInit {
         this.whalesList = data;
         
         this.createFeatures();
-        console.log(this.features);
 
         this.addTooltipHandling();
         this.cdr.detectChanges();
@@ -77,9 +76,16 @@ export class MapComponent implements AfterViewInit {
   
     const queryParams: any = {};
     if (scientificName) queryParams.scientificName = scientificName;
-    if (eventDate) queryParams.eventDate = eventDate;
+    if (eventDate) {
+      const year = eventDate.getFullYear();
+      const month = String(eventDate.getMonth() + 1).padStart(2, '0');
+      const day = String(eventDate.getDate()).padStart(2, '0');
+      queryParams.eventDate = `${year}-${month}-${day}`;
+    }
     if (latitude) queryParams.latitude = latitude;
     if (longitude) queryParams.longitude = longitude;
+
+    console.log(queryParams.eventDate);
   
     this.whaleApi.getWhalesWithFilters(queryParams).subscribe({
       next: (data) => {

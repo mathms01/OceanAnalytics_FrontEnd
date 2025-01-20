@@ -7,6 +7,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule, provideNativeDateAdapter } from '@angular/material/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { MonthSelectorComponent } from '../month-selector/month-selector.component';
 
 @Component({
   selector: 'filter',
@@ -22,6 +23,7 @@ import { CommonModule } from '@angular/common';
     MatDatepickerModule,
     MatNativeDateModule,
     ReactiveFormsModule,
+    MonthSelectorComponent
   ],
 })
 export class FilterComponent {
@@ -32,7 +34,7 @@ export class FilterComponent {
   constructor(private fb: FormBuilder) {
     this.filterForm = this.fb.group({
       scientificName: [''],
-      eventDate: [null],
+      eventDate: [new Date()],
       latitude: [null],
       longitude: [null],
     });
