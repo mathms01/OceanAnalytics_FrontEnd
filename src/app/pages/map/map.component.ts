@@ -72,7 +72,7 @@ export class MapComponent implements AfterViewInit {
   onFiltersChanged(filters: any): void {
     console.log('Filters applied:', filters);
     
-    const { scientificName, eventDate, latitude, longitude } = filters;
+    const { scientificName, eventDate, latitude, longitude, month } = filters;
   
     const queryParams: any = {};
     if (scientificName) queryParams.scientificName = scientificName;
@@ -84,8 +84,10 @@ export class MapComponent implements AfterViewInit {
     }
     if (latitude) queryParams.latitude = latitude;
     if (longitude) queryParams.longitude = longitude;
-
-    console.log(queryParams.eventDate);
+    if (month) {
+      queryParams.month = month;
+      queryParams.eventDate = null;
+     };
   
     this.whaleApi.getWhalesWithFilters(queryParams).subscribe({
       next: (data) => {

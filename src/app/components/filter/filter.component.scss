@@ -12,3 +12,22 @@ min-width: 200px;
 button {
 margin-top: 16px;
 }
+
+.toggle-group-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 16px;
+
+  mat-button-toggle-group {
+    border: 1px solid rgba(0, 0, 0, 0.23);
+    border-radius: 4px;
+    padding: 4px;
+    width: 100%;
+    box-sizing: border-box;
+
+    mat-button-toggle {
+      flex: 1;
+      text-transform: uppercase;
+    }
+  }
+}

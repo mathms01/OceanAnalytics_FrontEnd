@@ -8,6 +8,7 @@ import { MatNativeDateModule, provideNativeDateAdapter } from '@angular/material
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { MonthSelectorComponent } from '../month-selector/month-selector.component';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
 @Component({
   selector: 'filter',
@@ -23,11 +24,13 @@ import { MonthSelectorComponent } from '../month-selector/month-selector.compone
     MatDatepickerModule,
     MatNativeDateModule,
     ReactiveFormsModule,
-    MonthSelectorComponent
+    MonthSelectorComponent,
+    MatButtonToggleModule
   ],
 })
 export class FilterComponent {
   filterForm: FormGroup;
+  viewMode: string = 'month';
 
   @Output() filtersChanged = new EventEmitter<any>();
 
@@ -37,6 +40,7 @@ export class FilterComponent {
       eventDate: [new Date()],
       latitude: [null],
       longitude: [null],
+      month: [null],
     });
   }
 
@@ -48,5 +52,9 @@ export class FilterComponent {
   resetFilters(): void {
     this.filterForm.reset();
     this.applyFilters(); 
+  }
+
+  onMonthChanged(month: string): void {
+    this.filterForm.patchValue({ month });
   }
 }
