@@ -1,17 +1,23 @@
 import { Component , AfterViewInit, Inject, PLATFORM_ID, ChangeDetectorRef, ViewChild, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { isPlatformBrowser, NgFor, NgIf } from '@angular/common';
-import { AngularOpenlayersModule } from 'ng-openlayers';
 import { WhaleInterface } from '../../models/whale.interface';
 import { WhaleService } from '../../services/whaleapi/whaleapi.service';
-import { TooltipComponent } from '../../components/tooltip/tooltip.component';
-import Feature from 'ol/Feature';
-import Point from 'ol/geom/Point';
-import { fromLonLat } from 'ol/proj';
+import "@arcgis/map-components/dist/components/arcgis-map";
 import { FilterComponent } from '../../components/filter/filter.component';
+import { setAssetPath as setCalciteComponentsAssetPath } from '@esri/calcite-components/dist/components';
+import Map from '@arcgis/core/Map';
+import MapView from '@arcgis/core/views/MapView';
+import esriConfig from '@arcgis/core/config';
+import GraphicsLayer from '@arcgis/core/layers/GraphicsLayer';
+import Graphic from '@arcgis/core/Graphic';
+import Point from '@arcgis/core/geometry/Point';
+
+
+
 
 @Component({
   selector: 'app-map',
-  imports: [AngularOpenlayersModule, NgIf, TooltipComponent, NgFor, FilterComponent],
+  imports: [NgIf, FilterComponent],
   templateUrl: './map.component.html',
   styleUrl: './map.component.scss',
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
@@ -19,59 +25,38 @@ import { FilterComponent } from '../../components/filter/filter.component';
 export class MapComponent implements AfterViewInit {
   isBrowser: boolean;
   whalesList: WhaleInterface[] = [];
-  features: Feature[] = [];
-
-  @ViewChild('tooltipComponent') tooltipComponent!: TooltipComponent;
-  @ViewChild('map', { static: false }) map!: any;
+  private mapView!: MapView;
+  private graphicsLayer = new GraphicsLayer();
  
   constructor(@Inject(PLATFORM_ID) private platformId: Object, private whaleApi: WhaleService, private cdr: ChangeDetectorRef) {
+    esriConfig.assetsPath = 'https://js.arcgis.com/4.31/';
+
+    setCalciteComponentsAssetPath("https://js.arcgis.com/calcite-components/2.13.2/assets");
+    this.graphicsLayer = new GraphicsLayer();
     this.isBrowser = isPlatformBrowser(platformId);
   }
 
   ngAfterViewInit(): void {
-    this.whaleApi.getWhales().subscribe( {
+    if (this.isBrowser) {
+      this.initializeMap();
+    }
+
+    this.whaleApi.getWhales().subscribe({
       next: (data: WhaleInterface[]) => {
         this.whalesList = data;
-        
-        this.createFeatures();
-
-        this.addTooltipHandling();
+        this.updateMarkers();
         this.cdr.detectChanges();
       },
       error: (error) => {
-          console.log(error)
+        console.log(error)
       },
       complete: () => {
         console.log('complete whales fetch');
       }
-    })      
-  }
-
-  private addTooltipHandling(): void {
-    if (this.map)
-    {
-      const olMap = this.map.instance;
-      olMap.on('pointermove', (event: any) => {
-        const features = olMap.getFeaturesAtPixel(event.pixel);
-  
-        if (features?.length > 0) {
-          const feature = features[0];
-          const whale = feature.get('values') as WhaleInterface;
-  
-          if (whale)
-          {
-            this.tooltipComponent.updateTooltipContent(whale.scientificName || 'Unknown', event);
-          }
-        } else {
-          this.tooltipComponent.hideTooltip();
-        }
-      });
-    }
+    });
   }
 
   onFiltersChanged(filters: any): void {
-    console.log('Filters applied:', filters);
-    
     const { scientificName, eventDate, latitude, longitude, month } = filters;
   
     const queryParams: any = {};
@@ -86,30 +71,79 @@ export class MapComponent implements AfterViewInit {
     if (longitude) queryParams.longitude = longitude;
     if (month) {
       queryParams.month = month;
-      queryParams.eventDate = null;
      };
   
     this.whaleApi.getWhalesWithFilters(queryParams).subscribe({
       next: (data) => {
         this.whalesList = data;
-        this.createFeatures();
-
-        this.addTooltipHandling();
+        this.updateMarkers();
         this.cdr.detectChanges();
       },
       error: (err) => console.error(err),
     });
   }
-  
-  private createFeatures(): void {
-    this.features = this.whalesList.map((whale) => {
-      const feature = new Feature({
-        geometry: new Point(fromLonLat([whale.longitude, whale.latitude])),
-      });
-      feature.set('values', whale);
-      return feature;
+
+  private initializeMap(): void {
+    const map = new Map({
+      basemap: 'oceans'
     });
 
-    this.cdr.detectChanges();
+    this.mapView = new MapView({
+      container: 'viewDiv', 
+      map: map,
+      center: [-30, 10], 
+      zoom: 3 
+    });
+
+    map.add(this.graphicsLayer);
+
+    this.updateMarkers();
+  }
+
+  private updateMarkers(): void {
+    this.graphicsLayer.removeAll();
+  
+    this.whalesList.forEach((whale) => {
+      const graphic = this.createWhaleMarker(whale);
+      this.graphicsLayer.add(graphic);
+    });
+  }
+
+  private createWhaleMarker(whale: WhaleInterface): Graphic {
+      const point = new Point({
+        longitude: whale.longitude,
+        latitude: whale.latitude,
+      });
+
+      const markerSymbol = {
+        type: 'simple-marker', 
+        color: 'blue', 
+        outline: {
+          color: 'white', 
+          width: 1, 
+        },
+      };
+
+      const attributes = {
+        species: whale.scientificName,
+        observedDate: whale.eventDate,
+        coordinate: whale.longitude + " : " + whale.latitude, 
+      };
+
+      const popupTemplate = {
+        title: `{species}`,
+        content: `
+          <b>Species:</b> {species}<br>
+          <b>Observed Date:</b> {observedDate | date: 'yyyy-MM-dd'}<br>
+          <b>Coordinate : </b> {coordinate}
+        `,
+      };
+
+      return new Graphic({
+        geometry: point,
+        symbol: markerSymbol,
+        attributes: attributes,
+        popupTemplate: popupTemplate,
+      });
   }
 }

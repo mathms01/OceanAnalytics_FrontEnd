@@ -45,6 +45,12 @@ export class FilterComponent {
   }
 
   applyFilters(): void {
+    if (this.viewMode === 'month') {
+      delete this.filterForm.value.eventDate;
+    } else {
+      delete this.filterForm.value.month;
+    }
+
     const filters = this.filterForm.value;
     this.filtersChanged.emit(filters);
   }

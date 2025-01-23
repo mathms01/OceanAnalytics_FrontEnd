@@ -1,46 +1,6 @@
 <h1>Ocean Map</h1>
 <div *ngIf="isBrowser">
 <filter (filtersChanged)="onFiltersChanged($event)"></filter>
-<div class="map-container">
-  <aol-map #map>
-    <aol-view [zoom]="2">
-        <aol-coordinate [x]="5.795122" [y]="45.210225" [srid]="'EPSG:4326'"></aol-coordinate>
-      </aol-view>
-      <aol-layer-tile>
-        <aol-source-osm></aol-source-osm>
-      </aol-layer-tile>
-
-      <aol-layer-vector>
-        <aol-source-vector>
-            <aol-feature *ngFor="let whale of whalesList">
-                <aol-geometry-point>
-                    <aol-coordinate [x]="whale.longitude" [y]="whale.latitude" [srid]="'EPSG:4326'"></aol-coordinate>
-                </aol-geometry-point>
-                <aol-style>
-                    <aol-style-circle [radius]="10">
-                        <aol-style-stroke [color]="'black'" [width]="2"></aol-style-stroke>
-                        <aol-style-fill [color]="'green'"></aol-style-fill>
-                    </aol-style-circle>
-                </aol-style>
-            </aol-feature>
-        </aol-source-vector>
-    </aol-layer-vector>
-
-    <!-- <aol-layer-vector>
-      <aol-source-vector [features]="features">
-      </aol-source-vector>
-      <aol-style>
-        <aol-style-circle [radius]="10">
-            <aol-style-stroke [color]="'black'" [width]="2"></aol-style-stroke>
-            <aol-style-fill [color]="'red'"></aol-style-fill>
-        </aol-style-circle>
-      </aol-style>
-    </aol-layer-vector> -->
-
-      <aol-interaction-default></aol-interaction-default>
-      <aol-control-zoom></aol-control-zoom>
-    </aol-map>
-
-    <tooltip #tooltipComponent></tooltip>
+  <div id="viewDiv">
   </div>
 </div>

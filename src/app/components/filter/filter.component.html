@@ -29,15 +29,15 @@
     <div *ngIf="viewMode === 'month'">
       <month-selector (monthChanged)="onMonthChanged($event)"></month-selector>
     </div>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Longitude</mat-label>
+      <input matInput placeholder="Enter longitude" type="number" step=".01" formControlName="longitude" />
+    </mat-form-field>
   
     <mat-form-field appearance="fill">
       <mat-label>Latitude</mat-label>
       <input matInput placeholder="Enter latitude" type="number" step=".01" formControlName="latitude" />
-    </mat-form-field>
-  
-    <mat-form-field appearance="fill">
-      <mat-label>Longitude</mat-label>
-      <input matInput placeholder="Enter longitude" type="number" step=".01" formControlName="longitude" />
     </mat-form-field>
   
     <button mat-raised-button color="primary" (click)="applyFilters()">Apply Filters</button>
