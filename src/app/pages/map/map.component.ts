@@ -124,9 +124,9 @@ export class MapComponent implements AfterViewInit {
         },
       };
 
-      const attributes = {
+    const attributes = {
         species: whale.scientificName,
-        observedDate: whale.eventDate,
+        observedDate: new Date(whale.eventDate * 1000),
         coordinate: whale.longitude + " : " + whale.latitude, 
       };
 
@@ -134,7 +134,7 @@ export class MapComponent implements AfterViewInit {
         title: `{species}`,
         content: `
           <b>Species:</b> {species}<br>
-          <b>Observed Date:</b> {observedDate | date: 'yyyy-MM-dd'}<br>
+          <b>Observed Date:</b> {observedDate}<br>
           <b>Coordinate : </b> {coordinate}
         `,
       };
