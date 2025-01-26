@@ -1,1 +1,62 @@
-<h1>Welcome to the Home Page</h1>
+
+  <div class="page-section">
+<!-- Section 1 : Titre, Sous-titre et Photo de Fond -->
+<section class="hero-section">
+    <div class="hero-overlay">
+      <h1 class="hero-title">Protect the Whales</h1>
+      <h2 class="hero-subtitle">Together, we make a difference for their future</h2>
+    </div>
+  </section>
+  
+  <section class="whale-info">
+    <h2>Whales & their Protection</h2>
+    <div class="whale-cards">
+      <mat-card *ngFor="let card of whaleCards" class="whale-card">
+        <mat-card-header>
+          <h3>{{ card.title }}</h3>
+        </mat-card-header>
+        <mat-card-content>
+          <p>{{ card.description }}</p>
+          <small>{{ card.statistic }}</small>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </section>
+  
+  <section class="app-goals">
+    <h2>Our Mission</h2>
+    <div class="goal-cards">
+      <mat-card class="goal-card" *ngFor="let goal of appGoals">
+        <mat-icon class="goal-icon">{{ goal.icon }}</mat-icon>
+        <mat-card-header>
+            <h3>{{ goal.title }}</h3>
+          </mat-card-header>
+          <mat-card-content>
+            <p>{{ goal.description }}</p>
+          </mat-card-content>
+      </mat-card>
+    </div>
+  </section>
+  
+  <section class="app-features">
+    <h2>Explore Our Functionalities</h2>
+    <div class="feature-cards">
+      <mat-card *ngFor="let feature of features" class="feature-card">
+        <mat-card-header>
+          <h3>{{ feature.title }}</h3>
+        </mat-card-header>
+        <mat-card-content>
+          <p>{{ feature.description }}</p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-button color="accent" [routerLink]="feature.link">See More</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </section>
+  </div>
+  
+  
+  <footer class="footer">
+    <p>&copy; 2025 Ocean Analytics - Tous droits réservés</p>
+  </footer>

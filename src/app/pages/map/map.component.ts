@@ -134,8 +134,9 @@ export class MapComponent implements AfterViewInit {
         title: `{species}`,
         content: `
           <b>Species:</b> {species}<br>
-          <b>Observed Date:</b> {observedDate}<br>
-          <b>Coordinate : </b> {coordinate}
+          <img class="rect-img" src="https://picsum.photos/id/0/367/267" alt="">
+          <b>Observed Date:</b> <br> {observedDate}<br>
+          <b>Coordinate : </b> <br> {coordinate}
         `,
       };
 
