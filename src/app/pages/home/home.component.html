@@ -27,7 +27,7 @@
     <h2>Our Mission</h2>
     <div class="goal-cards">
       <mat-card class="goal-card" *ngFor="let goal of appGoals">
-        <mat-icon class="goal-icon">{{ goal.icon }}</mat-icon>
+        <mat-icon class="goal-icon" aria-hidden="false" [fontIcon]="goal.icon" aria-label="Goal icon"></mat-icon>
         <mat-card-header>
             <h3>{{ goal.title }}</h3>
           </mat-card-header>
