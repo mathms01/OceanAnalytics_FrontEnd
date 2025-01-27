@@ -1,11 +1,5 @@
 
   :host {
-    --content-padding: 10px;
-
-    background: var(--mat-sys-primary-container);
-    color: var(--mat-sys-on-primary-container);
-    border: 1px solid var(--mat-sys-outline-variant);
-
     --bright-blue: oklch(51.01% 0.274 263.83);
     --electric-violet: oklch(53.18% 0.28 296.97);
     --french-violet: oklch(47.66% 0.246 305.88);
@@ -101,7 +95,6 @@
   }
   
   .main-content {
-    padding: 16px;
     background-color: #f5f5f5;
     height: 100%; 
     box-sizing: border-box;

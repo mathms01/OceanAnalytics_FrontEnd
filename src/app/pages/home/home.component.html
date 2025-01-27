@@ -8,10 +8,10 @@
     </div>
   </section>
   
-  <section class="whale-info">
+  <section class="whale-info padding-content">
     <h2>Whales & their Protection</h2>
     <div class="whale-cards">
-      <mat-card *ngFor="let card of whaleCards" class="whale-card">
+      <mat-card *ngFor="let card of whaleCards; let i = index" [ngClass]="{ 'blue-card': i % 2 === 0 }">
         <mat-card-header>
           <h3>{{ card.title }}</h3>
         </mat-card-header>
@@ -24,7 +24,7 @@
   </section>
   
   <section class="app-goals">
-    <h2>Our Mission</h2>
+    <h2 class="padding-content">Our Mission</h2>
     <div class="goal-cards">
       <mat-card class="goal-card" *ngFor="let goal of appGoals">
         <mat-icon class="goal-icon" aria-hidden="false" [fontIcon]="goal.icon" aria-label="Goal icon"></mat-icon>
@@ -39,7 +39,7 @@
   </section>
   
   <section class="app-features">
-    <h2>Explore Our Functionalities</h2>
+    <h2 class="padding-content">Explore Our Functionalities</h2>
     <div class="feature-cards">
       <mat-card *ngFor="let feature of features" class="feature-card">
         <mat-card-header>

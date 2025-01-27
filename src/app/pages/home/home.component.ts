@@ -3,12 +3,12 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIcon } from '@angular/material/icon';
-import { NgFor } from '@angular/common';
+import { NgClass, NgFor } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-home',
-  imports: [MatCardModule, MatButtonModule, MatDividerModule, MatIcon, NgFor, RouterModule],
+  imports: [MatCardModule, MatButtonModule, MatDividerModule, MatIcon, NgFor, RouterModule, NgClass],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })

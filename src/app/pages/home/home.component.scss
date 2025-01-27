@@ -21,7 +21,7 @@
   }
   
   .hero-overlay {
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(99,185,219, 0.5);
     padding: 20px;
   }
   
@@ -36,6 +36,11 @@
   
   .whale-info {
     padding: 50px 0;
+    h2 {
+        background-color: rgba(99,185,219);
+        background-blend-mode: darken;
+        color: #ffffff;
+      }
   }
   
   .whale-cards {
@@ -48,12 +53,19 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    background-color: #f5f5f5;
+  }
+
+  .whale-card {
+    background-color: #ffffff; 
+  }
+  
+  .blue-card {
+    background-color: rgba(99,185,219);
+    color: #ffffff; 
   }
   
   .app-goals {
-    padding: 50px 0;
-    background-color: cyan;
+    background-color: rgba(99,185,219);
   }
   
   .goal-cards {
@@ -68,6 +80,7 @@
     flex-direction: column;
     align-items: center;
     text-align: center;
+    padding-top: 16px;
   }
   
   .goal-icon {
@@ -78,11 +91,15 @@
     width: 64px;
     height: 64px;
     border-radius: 50%;
-    background-color: rgba(0, 0, 0, 0.05);
+    background-color: rgba(99,185,219, 0.35);
+    color: #ffffff;
     text-align: center;
     line-height: 64px;
   }
-  
+
+  .padding-content {
+    padding: 16px;
+  }
   
   .goal-card h3 {
     margin-top: 10px;
