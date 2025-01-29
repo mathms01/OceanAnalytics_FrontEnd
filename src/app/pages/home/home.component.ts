@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIcon } from '@angular/material/icon';
 import { NgClass, NgFor } from '@angular/common';
 import { RouterModule } from '@angular/router';
+
 
 @Component({
   selector: 'app-home',
@@ -13,36 +14,52 @@ import { RouterModule } from '@angular/router';
   styleUrl: './home.component.scss'
 })
 export class HomeComponent {
+  currentIndex = 0;
+
+  prevSlide() {
+    this.currentIndex = (this.currentIndex - 1 + this.marineOrgs.length) % this.marineOrgs.length;
+  }
+
+  nextSlide() {
+    this.currentIndex = (this.currentIndex + 1) % this.marineOrgs.length;
+  }
+
   whaleCards = [
   {
     title: 'The Threat of Fishing Nets',
     description: 'Fishing nets are one of the main threats to whales.',
-    statistic: '80% of whales are affected by plastic pollution.'
+    statistic: '80% of whales are affected by plastic pollution.',
+    imageUrl: 'assets/images/home/whale-img/whale-net.jpg'
   },
   {
     title: 'Whaling',
     description: 'Whaling remains a major issue, despite being banned in several countries.',
-    statistic: 'Fewer than 10,000 whales are still victims of whaling each year.'
+    statistic: 'Fewer than 10,000 whales are still victims of whaling each year.',
+    imageUrl: 'assets/images/blue-whale.jpg'
   },
   {
     title: 'Climate Change',
     description: 'Warming oceans disrupt whale migrations.',
-    statistic: 'More than 30% of whale species are threatened by climate change.'
+    statistic: 'More than 30% of whale species are threatened by climate change.',
+    imageUrl: 'assets/images/blue-whale.jpg'
   },
   {
     title: 'Noise Pollution',
     description: 'Human noise disrupts whale communication, affecting their reproduction.',
-    statistic: 'Noise pollution has doubled over the past 50 years.'
+    statistic: 'Noise pollution has doubled over the past 50 years.',
+    imageUrl: 'assets/images/blue-whale.jpg'
   },
   {
     title: 'Loss of Marine Habitat',
     description: 'The degradation of marine habitats due to human activity affects whales.',
-    statistic: '60% of marine habitats have been disrupted by human activities.'
+    statistic: '60% of marine habitats have been disrupted by human activities.',
+    imageUrl: 'assets/images/blue-whale.jpg'
   },
   {
     title: 'Protecting Whales',
     description: 'International initiatives aim to preserve whales and their habitats.',
-    statistic: 'Protection programs have increased whale populations by 20%.'
+    statistic: 'Protection programs have increased whale populations by 20%.',
+    imageUrl: 'assets/images/blue-whale.jpg'
   }];
 
   appGoals = [
@@ -57,5 +74,26 @@ export class HomeComponent {
     { title: 'Migration Tracking', description: 'Track current migrations near my geo-localization.', link: '/map' },
     { title: 'Whales Wiki', description: 'Get information of current tracked whales.', link: '/map' },
     { title: 'Warning Notification', description: 'Receive alert and warnings of dangerous zones in real time.', link: '/map' }
+  ];
+
+  marineOrgs = [
+    {
+      name: 'Sea Shepherd',
+      description: 'An international marine conservation organization fighting illegal poaching and protecting marine wildlife.',
+      imageUrl: 'assets/images/sea-shepherd.jpg',
+      website: 'https://seashepherd.org'
+    },
+    {
+      name: 'WWF',
+      description: 'WWF works to preserve oceans, protect marine species, and promote sustainable fishing practices.',
+      imageUrl: 'assets/images/wwf.jpg',
+      website: 'https://www.wwf.org'
+    },
+    {
+      name: 'Greenpeace',
+      description: 'Greenpeace defends the oceans against pollution, overfishing, and climate change.',
+      imageUrl: 'assets/images/greenpeace.jpg',
+      website: 'https://www.greenpeace.org'
+    }
   ];
 }

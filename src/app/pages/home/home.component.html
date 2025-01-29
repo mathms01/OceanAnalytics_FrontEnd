@@ -11,19 +11,25 @@
   <section class="whale-info padding-content">
     <div class="whale-cards">
       <mat-card *ngFor="let card of whaleCards; let i = index" [ngClass]="{ 'blue-card': i % 2 === 0 }">
-        <mat-card-header>
-          <h2>{{ card.title }}</h2>
-        </mat-card-header>
-        <mat-card-content>
-          <p>{{ card.description }}</p>
-          <small>{{ card.statistic }}</small>
-        </mat-card-content>
+        <div class="card-content">
+          <div class="card-image">
+            <img [src]="card.imageUrl" [alt]="card.title" />
+          </div>
+          <div class="card-text">
+            <mat-card-header>
+              <h2>{{ card.title }}</h2>
+            </mat-card-header>
+            <mat-card-content>
+              <p>{{ card.description }}</p>
+              <small>{{ card.statistic }}</small>
+            </mat-card-content>
+          </div>
+        </div>
       </mat-card>
     </div>
   </section>
   
   <section class="app-goals">
-    <h2 class="padding-content module-title">Our Mission</h2>
     <div class="goal-cards">
       <mat-card class="goal-card" *ngFor="let goal of appGoals">
         <mat-icon class="goal-icon" aria-hidden="false" [fontIcon]="goal.icon" aria-label="Goal icon"></mat-icon>
@@ -38,7 +44,6 @@
   </section>
   
   <section class="app-features">
-    <h2 class="padding-content module-title">Explore Our Functionalities</h2>
     <div class="feature-cards">
       <mat-card *ngFor="let feature of features" class="feature-card">
         <mat-card-header>
@@ -53,6 +58,23 @@
       </mat-card>
     </div>
   </section>
+
+  <section class="carousel-container">
+    <mat-card class="carousel-card">
+      <img [src]="marineOrgs[currentIndex].imageUrl" [alt]="marineOrgs[currentIndex].name" class="carousel-image" />
+      <mat-card-content>
+        <h3>{{ marineOrgs[currentIndex].name }}</h3>
+        <p>{{ marineOrgs[currentIndex].description }}</p>
+        <a [href]="marineOrgs[currentIndex].website" target="_blank" class="learn-more">Learn more</a>
+      </mat-card-content>
+    </mat-card>
+  
+    <div class="carousel-controls">
+      <button mat-button (click)="prevSlide()">❮ Prev</button>
+      <button mat-button (click)="nextSlide()">Next ❯</button>
+    </div>
+  </section>
+  
   </div>
   
   
