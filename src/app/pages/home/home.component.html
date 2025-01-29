@@ -9,11 +9,10 @@
   </section>
   
   <section class="whale-info padding-content">
-    <h2>Whales & their Protection</h2>
     <div class="whale-cards">
       <mat-card *ngFor="let card of whaleCards; let i = index" [ngClass]="{ 'blue-card': i % 2 === 0 }">
         <mat-card-header>
-          <h3>{{ card.title }}</h3>
+          <h2>{{ card.title }}</h2>
         </mat-card-header>
         <mat-card-content>
           <p>{{ card.description }}</p>
@@ -24,12 +23,12 @@
   </section>
   
   <section class="app-goals">
-    <h2 class="padding-content">Our Mission</h2>
+    <h2 class="padding-content module-title">Our Mission</h2>
     <div class="goal-cards">
       <mat-card class="goal-card" *ngFor="let goal of appGoals">
         <mat-icon class="goal-icon" aria-hidden="false" [fontIcon]="goal.icon" aria-label="Goal icon"></mat-icon>
         <mat-card-header>
-            <h3>{{ goal.title }}</h3>
+            <h2>{{ goal.title }}</h2>
           </mat-card-header>
           <mat-card-content>
             <p>{{ goal.description }}</p>
@@ -39,11 +38,11 @@
   </section>
   
   <section class="app-features">
-    <h2 class="padding-content">Explore Our Functionalities</h2>
+    <h2 class="padding-content module-title">Explore Our Functionalities</h2>
     <div class="feature-cards">
       <mat-card *ngFor="let feature of features" class="feature-card">
         <mat-card-header>
-          <h3>{{ feature.title }}</h3>
+          <h2>{{ feature.title }}</h2>
         </mat-card-header>
         <mat-card-content>
           <p>{{ feature.description }}</p>

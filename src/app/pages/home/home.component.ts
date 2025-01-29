@@ -55,6 +55,7 @@ export class HomeComponent {
   features = [
     { title: 'Ocean Map', description: 'Search whale world position with different filters.', link: '/map' },
     { title: 'Migration Tracking', description: 'Track current migrations near my geo-localization.', link: '/map' },
+    { title: 'Whales Wiki', description: 'Get information of current tracked whales.', link: '/map' },
     { title: 'Warning Notification', description: 'Receive alert and warnings of dangerous zones in real time.', link: '/map' }
   ];
 }
