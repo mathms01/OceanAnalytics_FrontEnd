@@ -1,21 +1,20 @@
 
   <div class="page-section">
-<!-- Section 1 : Titre, Sous-titre et Photo de Fond -->
-<section class="hero-section">
+
+    <section class="hero-section">
     <div class="hero-overlay">
       <h1 class="hero-title">Protect the Whales</h1>
       <h2 class="hero-subtitle">Together, we make a difference for their future</h2>
     </div>
   </section>
-  
+
   <section class="whale-info padding-content">
     <div class="whale-cards">
-      <mat-card *ngFor="let card of whaleCards; let i = index" [ngClass]="{ 'blue-card': i % 2 === 0 }">
-        <div class="card-content">
-          <div class="card-image">
-            <img [src]="card.imageUrl" [alt]="card.title" />
-          </div>
-          <div class="card-text">
+      <mat-card *ngFor="let card of whaleCards; let i = index" 
+          class="whale-card" 
+          [ngClass]="{ 'blue-card': i % 2 === 0 }">
+          <img [src]="card.imageUrl" [alt]="card.title" />
+          <div class="whale-card-content">
             <mat-card-header>
               <h2>{{ card.title }}</h2>
             </mat-card-header>
@@ -24,8 +23,7 @@
               <small>{{ card.statistic }}</small>
             </mat-card-content>
           </div>
-        </div>
-      </mat-card>
+        </mat-card>
     </div>
   </section>
   

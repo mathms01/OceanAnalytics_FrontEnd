@@ -33,6 +33,10 @@
   .hero-subtitle {
     font-size: 1.5rem;
   }
+
+  section {
+    padding: 50px;
+  }
   
   .whale-info {
     padding: 50px 0;
@@ -51,6 +55,64 @@
     max-width: 600px;
     padding: 16px;
     background-color: #ffffff; 
+  }
+
+  .whale-info {
+    &.padding-content {
+      padding: 20px;
+    }
+  
+    .whale-cards {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+  
+      .whale-card {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        width: 100%;
+        max-width: 600px;
+        background: white;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  
+        &.blue-card {
+          background-color: rgba(99,185,219, 0.5);
+        }
+  
+        img {
+          width: 40%;
+          height: 100%;
+          object-fit: cover;
+        }
+  
+        .whale-card-content {
+          width: 60%;
+          padding: 15px;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+  
+          h2 {
+            margin: 0;
+            font-size: 1.5rem;
+            color: #0077b6;
+          }
+  
+          p {
+            margin: 10px 0;
+            color: #333;
+          }
+  
+          small {
+            color: #555;
+          }
+        }
+      }
+    }
   }
   
   .card-content {
@@ -112,7 +174,7 @@
     width: 64px;
     height: 64px;
     border-radius: 50%;
-    background-color: rgba(99,185,219, 0.35);
+    background-color: rgba(99,185,219);
     color: #ffffff;
     text-align: center;
     line-height: 64px;
@@ -181,6 +243,7 @@
     align-items: center;
     position: relative;
     height: 300px;
+    background-color: rgba(99,185,219);
   }
 
   .carousel-content {
