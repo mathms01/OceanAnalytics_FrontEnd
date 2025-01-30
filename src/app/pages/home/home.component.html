@@ -59,7 +59,15 @@
 
   <section class="carousel-container">
     <h2>Taking the fight further</h2>
-    <mat-card class="carousel-card" (mouseenter)="isHovered = true" (mouseleave)="isHovered = false">
+    <div class="carousel-wrapper">
+      <!-- Previous Card in the Background -->
+      <mat-card class="carousel-card prev-card">
+        <img [src]="marineOrgs[(currentIndex - 1 + marineOrgs.length) % marineOrgs.length].imageUrl" 
+             [alt]="marineOrgs[(currentIndex - 1 + marineOrgs.length) % marineOrgs.length].name" 
+             class="carousel-image" />
+      </mat-card>
+
+    <mat-card class="carousel-card main-card" (mouseenter)="isHovered = true" (mouseleave)="isHovered = false">
         <img [src]="marineOrgs[currentIndex].imageUrl" [alt]="marineOrgs[currentIndex].name" class="carousel-image" />
         <mat-card-content *ngIf="isHovered">
           <h3>{{ marineOrgs[currentIndex].name }}</h3>
@@ -71,8 +79,13 @@
           </div>
         </mat-card-content>
     </mat-card>
+    <mat-card class="carousel-card next-card">
+      <img [src]="marineOrgs[(currentIndex + 1) % marineOrgs.length].imageUrl" 
+           [alt]="marineOrgs[(currentIndex + 1) % marineOrgs.length].name" 
+           class="carousel-image" />
+    </mat-card>
+  </div>
   </section>
-  
   </div>
   
   
