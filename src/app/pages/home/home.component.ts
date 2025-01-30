@@ -11,26 +11,10 @@ import { RouterModule } from '@angular/router';
   imports: [MatCardModule, MatButtonModule, MatDividerModule, MatIcon, NgFor, RouterModule, NgClass, NgIf],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
-  // animations: [
-  //   trigger('fadeInOut', [
-  //     state('hidden', style({ opacity: 0 })),
-  //     state('visible', style({ opacity: 1 })),
-  //     transition('hidden => visible', animate('300ms ease-in')),
-  //     transition('visible => hidden', animate('300ms ease-out')),
-  //   ])
-  // ]
 })
 export class HomeComponent {
   currentIndex = 0;
   isHovered = false;
-
-  prevSlide() {
-    this.currentIndex = (this.currentIndex - 1 + this.marineOrgs.length) % this.marineOrgs.length;
-  }
-
-  nextSlide() {
-    this.currentIndex = (this.currentIndex + 1) % this.marineOrgs.length;
-  }
 
   whaleCards = [
   {
@@ -104,4 +88,12 @@ export class HomeComponent {
       website: 'https://www.greenpeace.org'
     }
   ];
+
+  prevSlide() {
+    this.currentIndex = (this.currentIndex - 1 + this.marineOrgs.length) % this.marineOrgs.length;
+  }
+
+  nextSlide() {
+    this.currentIndex = (this.currentIndex + 1) % this.marineOrgs.length;
+  }
 }
