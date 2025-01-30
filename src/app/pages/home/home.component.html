@@ -60,19 +60,19 @@
   </section>
 
   <section class="carousel-container">
-    <mat-card class="carousel-card">
-      <img [src]="marineOrgs[currentIndex].imageUrl" [alt]="marineOrgs[currentIndex].name" class="carousel-image" />
-      <mat-card-content>
-        <h3>{{ marineOrgs[currentIndex].name }}</h3>
-        <p>{{ marineOrgs[currentIndex].description }}</p>
-        <a [href]="marineOrgs[currentIndex].website" target="_blank" class="learn-more">Learn more</a>
-      </mat-card-content>
+    <h2>Taking the fight further</h2>
+    <mat-card class="carousel-card" (mouseenter)="isHovered = true" (mouseleave)="isHovered = false">
+        <img [src]="marineOrgs[currentIndex].imageUrl" [alt]="marineOrgs[currentIndex].name" class="carousel-image" />
+        <mat-card-content *ngIf="isHovered">
+          <h3>{{ marineOrgs[currentIndex].name }}</h3>
+          <p>{{ marineOrgs[currentIndex].description }}</p>
+          <div class="carousel-controls">
+            <button mat-button (click)="prevSlide()"> ❮ </button>
+            <a [href]="marineOrgs[currentIndex].website" target="_blank" class="learn-more">Learn more</a>
+            <button mat-button (click)="nextSlide()"> ❯ </button>
+          </div>
+        </mat-card-content>
     </mat-card>
-  
-    <div class="carousel-controls">
-      <button mat-button (click)="prevSlide()">❮ Prev</button>
-      <button mat-button (click)="nextSlide()">Next ❯</button>
-    </div>
   </section>
   
   </div>
