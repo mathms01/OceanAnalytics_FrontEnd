@@ -27,10 +27,14 @@
         <mat-icon>map</mat-icon> Map
       </button>
     </li>
+      <li mat-list-item>      
+        <button mat-raised-button color="primary" routerLink="/wiki" routerLinkActive="active" (click)="closeSidebar()" class="fixed-width-button">
+        <mat-icon>table</mat-icon> Wiki
+        </button>
+      </li>
     </mat-nav-list>
   </mat-sidenav>
 
-  <!-- Main Content -->
   <mat-sidenav-content class="main-content">
     <router-outlet></router-outlet>
   </mat-sidenav-content>
