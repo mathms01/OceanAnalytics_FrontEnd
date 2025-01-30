@@ -13,6 +13,10 @@ export const routes: Routes = [
         path: 'wiki',
         loadComponent: () => import('./pages/wiki/wiki.component').then(m => m.WikiComponent)
       },
+      {
+        path: 'whale-details/:id',
+        loadComponent: () => import('./components/wiki-whale-details/wiki-whale-details.component').then(m => m.WikiWhaleDetailsComponent)
+      },
       { path: '', redirectTo: '/home', pathMatch: 'full' },
       { path: '**', loadComponent: () => import('./pages/not-found/not-found.component').then(m => m.NotFoundComponent) }
 ];
