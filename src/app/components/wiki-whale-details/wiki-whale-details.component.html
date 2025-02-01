@@ -1,7 +1,15 @@
-<div class="whale-details" *ngIf="whale">
-    <img [src]="whale.imageUrl" [alt]="whale.name" class="whale-details-image">
-    <h2>{{ whale.name }}</h2>
-    <p><strong>Description:</strong> {{ whale.description }}</p>
-    <p><strong>Location:</strong> {{ whale.location }}</p>
-    <p><strong>Specifics:</strong> {{ whale.specifics }}</p>
-</div>
+<div class="whale-details-container" *ngIf="whale">
+    <div class="whale-details-card">
+      <img [src]="whale.imageUrl" [alt]="whale.name" class="whale-details-image">
+      <div class="whale-details-content">
+        <h2 class="whale-name">{{ whale.name }}</h2>
+        <p><strong>Description:</strong> {{ whale.description }}</p>
+        <p><strong>Location:</strong> {{ whale.location }}</p>
+        <p><strong>Specifics:</strong> {{ whale.specifics }}</p>
+        <button mat-raised-button color="accent" (click)="goBack()" class="back-button">
+          Retour au Wiki
+        </button>
+      </div>
+    </div>
+  </div>
+  

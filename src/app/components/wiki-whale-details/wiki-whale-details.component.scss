@@ -1,0 +1,43 @@
+.whale-details-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 90vh;
+    height: 100%;
+    background-color: #f0f8ff;
+  }
+  
+  .whale-details-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    max-width: 500px;
+    text-align: center;
+  }
+  
+  .whale-details-image {
+    width: 100%;
+    max-height: 300px;
+    object-fit: cover;
+    border-radius: 12px 12px 0 0;
+  }
+  
+  .whale-details-content {
+    padding: 15px;
+  }
+  
+  .whale-name {
+    color: #0077cc;
+    margin-bottom: 10px;
+  }
+  
+  .back-button {
+    margin-top: 15px;
+    transition: transform 0.2s ease-in-out;
+  
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+  

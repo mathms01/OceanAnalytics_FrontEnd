@@ -1,24 +1,25 @@
-<div class="page-section whale-gallery">
-  <mat-grid-list cols="3" rowHeight="220px" gutterSize="10px">
-    <mat-grid-tile 
-      *ngFor="let whale of whales" 
-      [colspan]="whale.colSpan" 
-      [rowspan]="whale.rowSpan"
-      (mouseenter)="hoveredWhale = whale.name" 
-      (mouseleave)="hoveredWhale = null"
-      (click)="goToDetails(whale)"
-      class="whale-tile">
-      
-      <img [src]="whale.imageUrl" [alt]="whale.name" class="whale-image">
-      
-      <div class="whale-overlay" *ngIf="hoveredWhale === whale.name">
-        <h3>{{ whale.name }}</h3>
-      </div>
-
-    </mat-grid-tile>
-  </mat-grid-list>
+<div class="page-section">
+<div class="whale-container">
+  <h2>Discover the whales</h2>
+<div class="whale-gallery">
+    <mat-grid-list [cols]="cols" rowHeight="200px" gutterSize="10px">
+      <mat-grid-tile 
+        *ngFor="let whale of whales" 
+        [colspan]="whale.colSpan" 
+        [rowspan]="whale.rowSpan"
+        (mouseenter)="hoveredWhale = whale.name" 
+        (mouseleave)="hoveredWhale = null"
+        (click)="goToDetails(whale)"
+        class="whale-tile">
+        
+        <img [src]="whale.imageUrl" [alt]="whale.name" class="whale-image">
+        
+        <div class="whale-overlay" *ngIf="hoveredWhale === whale.name">
+          <h3>{{ whale.name }}</h3>
+        </div>
+  
+      </mat-grid-tile>
+    </mat-grid-list>
 </div>
-
-<footer class="footer">
-    <p>&copy; 2025 Ocean Analytics - Tous droits réservés</p>
-</footer>
+</div>
+</div>
