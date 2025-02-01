@@ -1,17 +1,22 @@
 <div class="page-section whale-gallery">
-    <mat-grid-list cols="3" rowHeight="220px" gutterSize="10px">
-        <mat-grid-tile 
-          *ngFor="let whale of whales" 
-          (click)="goToDetails(whale)"
-          class="whale-tile">
-          
-          <img [src]="whale.imageUrl" [alt]="whale.name" class="whale-image">
-          <div class="whale-overlay">
-            <h3>{{ whale.name }}</h3>
-          </div>
-    
-        </mat-grid-tile>
-      </mat-grid-list>
+  <mat-grid-list cols="3" rowHeight="220px" gutterSize="10px">
+    <mat-grid-tile 
+      *ngFor="let whale of whales" 
+      [colspan]="whale.colSpan" 
+      [rowspan]="whale.rowSpan"
+      (mouseenter)="hoveredWhale = whale.name" 
+      (mouseleave)="hoveredWhale = null"
+      (click)="goToDetails(whale)"
+      class="whale-tile">
+      
+      <img [src]="whale.imageUrl" [alt]="whale.name" class="whale-image">
+      
+      <div class="whale-overlay" *ngIf="hoveredWhale === whale.name">
+        <h3>{{ whale.name }}</h3>
+      </div>
+
+    </mat-grid-tile>
+  </mat-grid-list>
 </div>
 
 <footer class="footer">

@@ -2,41 +2,51 @@
     color: #0077cc;
   }
 
-.page-section {
-    width: 100%
-}
-
-.whale-gallery {
-  width: 85%;
-  margin: auto;
-}
-
-mat-grid-tile {
-  position: relative;
-  cursor: pointer;
-  overflow: hidden;
-  transition: transform 0.3s ease-in-out;
-  border-radius: 10px;
-  background-color: #f4f4f4;
-
-  &:hover {
-    transform: scale(1.05);
+  .page-section {
+    width: 100%;
+    min-width: 1200px;
   }
-}
-
-.whale-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.whale-overlay {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  background: rgba(0, 0, 0, 0.6);
-  color: white;
-  text-align: center;
-  padding: 10px;
-  font-size: 16px;
-}
+  
+  .whale-gallery {
+    width: 100%; 
+    margin: 0 auto;
+    background-size: cover;
+    background-color: #0077cc;
+  }
+  
+  mat-grid-tile {
+    width: 100% !important;
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out;
+    border-radius: 10px;
+    background-color: #f4f4f4;
+  
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+  
+  .whale-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .whale-overlay {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    text-align: center;
+    padding: 10px;
+    font-size: 16px;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+  }
+  
+  mat-grid-tile:hover .whale-overlay {
+    opacity: 1;
+  }
