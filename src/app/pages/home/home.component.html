@@ -51,7 +51,7 @@
           <p>{{ feature.description }}</p>
         </mat-card-content>
         <mat-card-actions>
-          <button mat-button color="accent" [routerLink]="feature.link">See More</button>
+          <basic-button [routerLink]="feature.link">See More</basic-button>
         </mat-card-actions>
       </mat-card>
     </div>
@@ -73,7 +73,7 @@
           <p>{{ marineOrgs[currentIndex].description }}</p>
           <div class="carousel-controls">
             <button mat-button (click)="prevSlide()"> ❮ </button>
-            <a [href]="marineOrgs[currentIndex].website" target="_blank" class="learn-more">Learn more</a>
+            <basic-ref-button [href]="marineOrgs[currentIndex].website" target="_blank">Learn more</basic-ref-button>
             <button mat-button (click)="nextSlide()"> ❯ </button>
           </div>
         </mat-card-content>

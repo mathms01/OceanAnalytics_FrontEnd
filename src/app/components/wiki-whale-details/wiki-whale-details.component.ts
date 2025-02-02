@@ -2,12 +2,12 @@ import { NgIf } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
-import { MatButton } from '@angular/material/button';
+import { BasicButtonComponent } from '../shared/basic-button/basic-button.component';
 
 
 @Component({
   selector: 'app-wiki-whale-details',
-  imports: [NgIf, MatButton],
+  imports: [NgIf, BasicButtonComponent],
   templateUrl: './wiki-whale-details.component.html',
   styleUrl: './wiki-whale-details.component.scss'
 })
