@@ -14,6 +14,10 @@ export const routes: Routes = [
         loadComponent: () => import('./pages/wiki/wiki.component').then(m => m.WikiComponent)
       },
       {
+        path: 'migration',
+        loadComponent: () => import('./pages/migration-map/migration-map.component').then(m => m.MigrationMapComponent)
+      },
+      {
         path: 'whale-details/:id',
         loadComponent: () => import('./components/wiki-whale-details/wiki-whale-details.component').then(m => m.WikiWhaleDetailsComponent)
       },

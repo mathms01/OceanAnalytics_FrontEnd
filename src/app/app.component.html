@@ -7,9 +7,7 @@
   <h1 class="custom-spacing">Ocean Analytics</h1>
 </mat-toolbar>
 
-<!-- Side Navigation Container -->
 <mat-sidenav-container class="sidenav-container">
-  <!-- Sidebar -->
   <mat-sidenav
     #sidenav
     [mode]="isExpanded ? 'side' : 'over'"
@@ -25,6 +23,11 @@
       <li mat-list-item>      
         <button mat-raised-button color="primary" routerLink="/map" routerLinkActive="active" (click)="closeSidebar()" class="fixed-width-button">
         <mat-icon>map</mat-icon> Map
+      </button>
+    </li>
+    <li mat-list-item>      
+        <button mat-raised-button color="primary" routerLink="/migration" routerLinkActive="active" (click)="closeSidebar()" class="fixed-width-button">
+        <mat-icon>explore</mat-icon> Migration
       </button>
     </li>
       <li mat-list-item>      
