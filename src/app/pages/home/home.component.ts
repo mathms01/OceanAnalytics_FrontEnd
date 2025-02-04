@@ -10,7 +10,7 @@ import { BasicRefButtonComponent } from "../../components/shared/basic-ref-butto
 
 @Component({
   selector: 'app-home',
-  imports: [MatCardModule, MatButtonModule, MatDividerModule, MatIcon, NgFor, RouterModule, NgClass, NgIf, BasicButtonComponent, BasicRefButtonComponent],
+  imports: [MatCardModule, MatButtonModule, MatDividerModule, MatIcon, NgFor, RouterModule, NgClass, NgIf, BasicButtonComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })
@@ -98,4 +98,17 @@ export class HomeComponent {
   nextSlide() {
     this.currentIndex = (this.currentIndex + 1) % this.marineOrgs.length;
   }
+
+  getCardClass(index: number): string {
+    const row = Math.floor(index / 2);
+    
+    return (row % 2 === 0) ? (index % 2 === 0 ? 'blue-card' : '') : (index % 2 !== 0 ? 'blue-card' : '');
+  }
+
+  openLink(url: string): void {
+    if (url) {
+      window.open(url, '_blank');
+    }
+  }
+  
 }
