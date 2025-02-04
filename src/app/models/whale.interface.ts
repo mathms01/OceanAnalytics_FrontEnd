@@ -4,4 +4,5 @@ export interface WhaleInterface {
     latitude: number
     longitude: number
     eventDate: number
+    imageUrl: string
   }
