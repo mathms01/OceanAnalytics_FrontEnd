@@ -1,4 +1,4 @@
-import { Component , AfterViewInit, Inject, PLATFORM_ID, ChangeDetectorRef, ViewChild, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { Component , AfterViewInit, Inject, PLATFORM_ID, ChangeDetectorRef, ViewChild, CUSTOM_ELEMENTS_SCHEMA, OnDestroy } from '@angular/core';
 import { isPlatformBrowser, NgFor, NgIf } from '@angular/common';
 import { WhaleInterface } from '../../models/whale.interface';
 import { WhaleService } from '../../services/whaleapi/whaleapi.service';
@@ -11,7 +11,8 @@ import esriConfig from '@arcgis/core/config';
 import GraphicsLayer from '@arcgis/core/layers/GraphicsLayer';
 import Graphic from '@arcgis/core/Graphic';
 import Point from '@arcgis/core/geometry/Point';
-
+import { WhaleImageService } from '../../services/whaleimage/whaleimage.service';
+import { firstValueFrom } from 'rxjs';
 
 
 
@@ -25,10 +26,10 @@ import Point from '@arcgis/core/geometry/Point';
 export class MapComponent implements AfterViewInit {
   isBrowser: boolean;
   whalesList: WhaleInterface[] = [];
-  private mapView!: MapView;
+  private mapView?: MapView | null;
   private graphicsLayer = new GraphicsLayer();
  
-  constructor(@Inject(PLATFORM_ID) private platformId: Object, private whaleApi: WhaleService, private cdr: ChangeDetectorRef) {
+  constructor(@Inject(PLATFORM_ID) private platformId: Object, private whaleApi: WhaleService, private cdr: ChangeDetectorRef, private whaleImageService: WhaleImageService) {
     esriConfig.assetsPath = 'https://js.arcgis.com/4.31/';
 
     setCalciteComponentsAssetPath("https://js.arcgis.com/calcite-components/2.13.2/assets");
@@ -124,19 +125,24 @@ export class MapComponent implements AfterViewInit {
         },
       };
 
-    const attributes = {
+    const attributes: { species: string; observedDate: Date; coordinate: string; imageSrc: string | null } = {
         species: whale.scientificName,
         observedDate: new Date(whale.eventDate * 1000),
-        coordinate: whale.longitude + " : " + whale.latitude, 
-      };
+        coordinate: whale.longitude + " : " + whale.latitude,
+        imageSrc : null
+    };
 
-      const popupTemplate = {
+    let popupTemplate = {};
+    
+    this.fetchImage(whale.scientificName).then(imageUrl => {
+      attributes.imageSrc = imageUrl ?? null; 
+      // <img class="rect-img" src="{imageSrc}" alt="">
+      popupTemplate = {
         title: `{species}`,
         content: `
           <b>Species:</b> {species}<br>
-          <img class="rect-img" src="https://picsum.photos/id/0/367/267" alt="">
           <b>Observed Date:</b> <br> {observedDate}<br>
-          <b>Coordinate : </b> <br> {coordinate}
+          <b>Coordinate:</b> <br> {coordinate}
         `,
       };
 
@@ -146,5 +152,10 @@ export class MapComponent implements AfterViewInit {
         attributes: attributes,
         popupTemplate: popupTemplate,
       });
+    });
+  }
+
+  fetchImage(whaleScientificName: string): Promise<string | null> {
+  return firstValueFrom(this.whaleImageService.getWhaleImage(whaleScientificName));
   }
 }

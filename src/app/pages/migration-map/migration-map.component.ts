@@ -1,4 +1,4 @@
-import { AfterViewInit, ChangeDetectorRef, Component, Inject, PLATFORM_ID } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, CUSTOM_ELEMENTS_SCHEMA, Inject, OnDestroy, PLATFORM_ID } from '@angular/core';
 import { WhaleService } from '../../services/whaleapi/whaleapi.service';
 import Map from '@arcgis/core/Map';
 import MapView from '@arcgis/core/views/MapView';
@@ -11,7 +11,8 @@ import { setAssetPath as setCalciteComponentsAssetPath } from '@esri/calcite-com
   selector: 'migration-map',
   imports: [NgIf],
   templateUrl: './migration-map.component.html',
-  styleUrl: './migration-map.component.scss'
+  styleUrl: './migration-map.component.scss',
+    schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class MigrationMapComponent implements AfterViewInit {
   isBrowser: boolean;
@@ -72,7 +73,7 @@ export class MigrationMapComponent implements AfterViewInit {
     });
 
     this.mapView = new MapView({
-      container: 'viewDiv', 
+      container: 'viewMigrationDiv', 
       map: map,
       center: [-30, 10], 
       zoom: 3 
