@@ -79,6 +79,7 @@
     display: flex;
     align-items: center;
     box-sizing: border-box;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   }
   
   .sidenav-container {
@@ -88,6 +89,7 @@
   
   .sidenav {
     width: 175px;
+    box-shadow: 2px 0px 6px rgba(0, 0, 0, 0.1);
   }
 
   .custom-spacing {
@@ -111,11 +113,8 @@
   .list-with-gap {
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 10px;
-  }
-
-  .content {
-    padding: var(--content-padding);
   }
 
   .angular-logo {
@@ -123,6 +122,7 @@
   }
 
   .content {
+    padding: var(--content-padding);
     display: flex;
     justify-content: space-around;
     width: 100%;

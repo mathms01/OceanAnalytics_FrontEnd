@@ -64,10 +64,10 @@ export class HomeComponent {
   ];
 
   features = [
-    { title: 'Ocean Map', description: 'Search whale world position with different filters.', link: '/map' },
-    { title: 'Migration Tracking', description: 'Track current migrations near my geo-localization.', link: '/map' },
-    { title: 'Whales Wiki', description: 'Get information of current tracked whales.', link: '/map' },
-    { title: 'Warning Notification', description: 'Receive alert and warnings of dangerous zones in real time.', link: '/map' }
+    { title: 'Ocean Map', imageUrl: '/images/feature/ocean_map_feature.png', description: 'Search whale world position with different filters.', link: '/map' },
+    { title: 'Migration Tracking', imageUrl: '/images/feature/ocean_map_feature.png', description: 'Track current migrations near my geo-localization.', link: '/migration' },
+    { title: 'Whales Wiki', imageUrl: '/images/feature/wiki_feature.png', description: 'Get information of current tracked whales.', link: '/wiki' },
+    { title: 'Warning Notification', imageUrl: '/images/feature/wiki_feature.png', description: 'Receive alert and warnings of dangerous zones in real time.', link: '/map' }
   ];
 
   marineOrgs = [

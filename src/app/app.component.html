@@ -1,9 +1,7 @@
 
 <!-- Top Toolbar -->
 <mat-toolbar color="primary" class="toolbar">
-  <button mat-mini-fab (click)="toggleSidebar(sidenav)">
-    <mat-icon>menu</mat-icon>
-  </button>
+  <basic-icon-button [icon]="'menu'" (action)="toggleSidebar(sidenav)"></basic-icon-button>
   <h1 class="custom-spacing">Ocean Analytics</h1>
 </mat-toolbar>
 
