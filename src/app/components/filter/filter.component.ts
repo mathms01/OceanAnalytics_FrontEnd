@@ -9,6 +9,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { MonthSelectorComponent } from '../month-selector/month-selector.component';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatIcon } from '@angular/material/icon';
+import { MatSidenav, MatSidenavContainer } from '@angular/material/sidenav';
 
 @Component({
   selector: 'filter',
@@ -25,12 +27,16 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
     MatNativeDateModule,
     ReactiveFormsModule,
     MonthSelectorComponent,
-    MatButtonToggleModule
+    MatButtonToggleModule,
+    MatIcon,
+    MatSidenav,
+    MatSidenavContainer
   ],
 })
 export class FilterComponent {
   filterForm: FormGroup;
   viewMode: string = 'month';
+  filterPanelOpen: boolean = false;
 
   @Output() filtersChanged = new EventEmitter<any>();
 
@@ -42,6 +48,10 @@ export class FilterComponent {
       longitude: [null],
       month: [null],
     });
+  }
+
+  toggleFilterPanel() {
+    this.filterPanelOpen = !this.filterPanelOpen;
   }
 
   applyFilters(): void {

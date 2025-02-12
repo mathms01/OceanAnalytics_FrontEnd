@@ -3,6 +3,8 @@
 <mat-toolbar color="primary" class="toolbar">
   <basic-icon-button [icon]="'menu'" (action)="toggleSidebar(sidenav)"></basic-icon-button>
   <h1 class="custom-spacing">Ocean Analytics</h1>
+  <h1 class="custom-spacing">-</h1>
+  <h1 class="custom-spacing">{{ pageTitle }}</h1>
 </mat-toolbar>
 
 <mat-sidenav-container class="sidenav-container">
@@ -14,22 +16,22 @@
   >
     <mat-nav-list class="list-with-gap">
       <li mat-list-item>
-        <button mat-raised-button color="primary" routerLink="/home" routerLinkActive="active" (click)="closeSidebar()" class="fixed-width-button">
+        <button mat-raised-button color="primary" routerLink="/home" routerLinkActive="active" (click)="closeSidebar()" [ngClass]="{ 'active-button': isActive('/home') }" class="fixed-width-button">
           <mat-icon>home</mat-icon> Home
         </button>
       </li>
       <li mat-list-item>      
-        <button mat-raised-button color="primary" routerLink="/map" routerLinkActive="active" (click)="closeSidebar()" class="fixed-width-button">
+        <button mat-raised-button color="primary" routerLink="/map" routerLinkActive="active" (click)="closeSidebar()" [ngClass]="{ 'active-button': isActive('/map') }"  class="fixed-width-button">
         <mat-icon>map</mat-icon> Map
       </button>
     </li>
     <li mat-list-item>      
-        <button mat-raised-button color="primary" routerLink="/migration" routerLinkActive="active" (click)="closeSidebar()" class="fixed-width-button">
+        <button mat-raised-button color="primary" routerLink="/migration" routerLinkActive="active" (click)="closeSidebar()" [ngClass]="{ 'active-button': isActive('/migration') }" class="fixed-width-button">
         <mat-icon>explore</mat-icon> Migration
       </button>
     </li>
       <li mat-list-item>      
-        <button mat-raised-button color="primary" routerLink="/wiki" routerLinkActive="active" (click)="closeSidebar()" class="fixed-width-button">
+        <button mat-raised-button color="primary" routerLink="/wiki" routerLinkActive="active" (click)="closeSidebar()" [ngClass]="{ 'active-button': isActive('/wiki') }" class="fixed-width-button">
         <mat-icon>table</mat-icon> Wiki
         </button>
       </li>

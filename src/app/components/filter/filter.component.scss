@@ -31,3 +31,20 @@ margin-top: 16px;
     }
   }
 }
+
+.sidenav-container {
+  height: 100%;
+}
+
+.filter-sidebar {
+  width: 300px;
+  padding: 16px;
+  background-color: #fff;
+}
+
+.toggle-button {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 1000;
+}

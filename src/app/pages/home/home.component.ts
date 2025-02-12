@@ -6,7 +6,6 @@ import { MatIcon } from '@angular/material/icon';
 import { NgClass, NgFor, NgIf } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { BasicButtonComponent } from '../../components/shared/basic-button/basic-button.component';
-import { BasicRefButtonComponent } from "../../components/shared/basic-ref-button/basic-ref-button.component";
 
 @Component({
   selector: 'app-home',
@@ -110,5 +109,4 @@ export class HomeComponent {
       window.open(url, '_blank');
     }
   }
-  
 }

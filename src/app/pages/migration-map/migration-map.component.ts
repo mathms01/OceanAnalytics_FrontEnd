@@ -1,4 +1,4 @@
-import { AfterViewInit, ChangeDetectorRef, Component, CUSTOM_ELEMENTS_SCHEMA, Inject, OnDestroy, PLATFORM_ID } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, CUSTOM_ELEMENTS_SCHEMA, Inject, PLATFORM_ID } from '@angular/core';
 import { WhaleService } from '../../services/whaleapi/whaleapi.service';
 import Map from '@arcgis/core/Map';
 import MapView from '@arcgis/core/views/MapView';

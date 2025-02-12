@@ -110,6 +110,13 @@
     width: 150px;
   }
 
+  .active-button {
+    background-color: #1976d2 !important;
+    color: white !important;
+    border: 2px solid #1565c0 !important;
+    font-weight: bold;
+  }
+
   .list-with-gap {
     display: flex;
     flex-direction: column;
@@ -223,5 +230,7 @@
   }
 
   .footer {
-    color: #0077cc;
+    p {
+      color: #0077cc;
+    }
   }
