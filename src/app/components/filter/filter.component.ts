@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Output, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -10,7 +10,7 @@ import { CommonModule } from '@angular/common';
 import { MonthSelectorComponent } from '../month-selector/month-selector.component';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatIcon } from '@angular/material/icon';
-import { MatSidenav, MatSidenavContainer } from '@angular/material/sidenav';
+import { MatSidenav, MatSidenavModule } from '@angular/material/sidenav';
 
 @Component({
   selector: 'filter',
@@ -29,8 +29,7 @@ import { MatSidenav, MatSidenavContainer } from '@angular/material/sidenav';
     MonthSelectorComponent,
     MatButtonToggleModule,
     MatIcon,
-    MatSidenav,
-    MatSidenavContainer
+    MatSidenavModule
   ],
 })
 export class FilterComponent {
@@ -39,6 +38,7 @@ export class FilterComponent {
   filterPanelOpen: boolean = false;
 
   @Output() filtersChanged = new EventEmitter<any>();
+  @ViewChild('sidenav') sidenav!: MatSidenav;
 
   constructor(private fb: FormBuilder) {
     this.filterForm = this.fb.group({
@@ -52,6 +52,7 @@ export class FilterComponent {
 
   toggleFilterPanel() {
     this.filterPanelOpen = !this.filterPanelOpen;
+    this.sidenav.toggle();
   }
 
   applyFilters(): void {
