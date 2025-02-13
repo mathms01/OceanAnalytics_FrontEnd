@@ -44,63 +44,60 @@
     <button mat-button color="warn" (click)="resetFilters()">Reset</button>
   </div> -->
 
-<button mat-mini-fab color="primary" class="toggle-button" (click)="toggleFilterPanel()">
-  <mat-icon>{{ filterPanelOpen ? 'close' : 'filter_list' }}</mat-icon>
-</button>
+<basic-icon-button
+  class="toggle-button"
+  [icon]="filterPanelOpen ? 'close' : 'filter_list'"
+  (action)="toggleFilterPanel()">
+</basic-icon-button>
 
-<mat-sidenav-container class="sidenav-container">
-  <mat-sidenav [(opened)]="filterPanelOpen" mode="side" class="filter-sidebar">
-    <div class="filter-container" [formGroup]="filterForm">
-      <div class="filter-header">
-        <h3>Filters</h3>
-        <button mat-icon-button (click)="toggleFilterPanel()">
-          <mat-icon>close</mat-icon>
-        </button>
-      </div>
-
-      <mat-form-field appearance="fill">
-        <mat-label>Scientific Name</mat-label>
-        <input matInput placeholder="Enter scientific name" formControlName="scientificName" />
-      </mat-form-field>
-
-      <div class="toggle-group-container">
-        <mat-button-toggle-group
-          [(value)]="viewMode"
-          aria-label="Toggle between Month and Date"
-          color="primary"
-          appearance="standard"
-        >
-          <mat-button-toggle value="month">Month</mat-button-toggle>
-          <mat-button-toggle value="date">Date</mat-button-toggle>
-        </mat-button-toggle-group>
-      </div>
-
-      <div *ngIf="viewMode === 'date'">
-        <mat-form-field appearance="fill">
-          <mat-label>Date</mat-label>
-          <input matInput [matDatepicker]="picker" placeholder="Choose a date" formControlName="eventDate" />
-          <mat-hint>MM-DD-YYYY</mat-hint>
-          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-          <mat-datepicker #picker></mat-datepicker>
-        </mat-form-field>
-      </div>
-
-      <div *ngIf="viewMode === 'month'">
-        <month-selector (monthChanged)="onMonthChanged($event)"></month-selector>
-      </div>
-
-      <mat-form-field appearance="fill">
-        <mat-label>Longitude</mat-label>
-        <input matInput placeholder="Enter longitude" type="number" step=".01" formControlName="longitude" />
-      </mat-form-field>
-
-      <mat-form-field appearance="fill">
-        <mat-label>Latitude</mat-label>
-        <input matInput placeholder="Enter latitude" type="number" step=".01" formControlName="latitude" />
-      </mat-form-field>
-
-      <button mat-raised-button color="primary" (click)="applyFilters()">Apply Filters</button>
-      <button mat-button color="warn" (click)="resetFilters()">Reset</button>
+<div class="filter-sidebar" *ngIf="filterPanelOpen">
+  <div class="filter-container" [formGroup]="filterForm">
+    <div class="filter-header">
+      <h3>Filters</h3>
     </div>
-  </mat-sidenav>
-</mat-sidenav-container>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Scientific Name</mat-label>
+      <input matInput placeholder="Enter scientific name" formControlName="scientificName" />
+    </mat-form-field>
+
+    <div class="toggle-group-container">
+      <mat-button-toggle-group
+        [(value)]="viewMode"
+        aria-label="Toggle between Month and Date"
+        color="primary"
+        appearance="standard">
+        <mat-button-toggle value="month">Month</mat-button-toggle>
+        <mat-button-toggle value="date">Date</mat-button-toggle>
+      </mat-button-toggle-group>
+    </div>
+
+    <div *ngIf="viewMode === 'date'">
+      <mat-form-field appearance="fill">
+        <mat-label>Date</mat-label>
+        <input matInput [matDatepicker]="picker" placeholder="Choose a date" formControlName="eventDate" />
+        <mat-hint>MM-DD-YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
+
+    <div *ngIf="viewMode === 'month'">
+      <month-selector (monthChanged)="onMonthChanged($event)"></month-selector>
+    </div>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Longitude</mat-label>
+      <input matInput placeholder="Enter longitude" type="number" step=".01" formControlName="longitude" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Latitude</mat-label>
+      <input matInput placeholder="Enter latitude" type="number" step=".01" formControlName="latitude" />
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" (click)="applyFilters()">Apply Filters</button>
+    <button mat-button color="warn" (click)="resetFilters()">Reset</button>
+  </div>
+</div>
+

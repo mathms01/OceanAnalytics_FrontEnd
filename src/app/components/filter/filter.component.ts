@@ -9,8 +9,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { MonthSelectorComponent } from '../month-selector/month-selector.component';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
-import { MatIcon } from '@angular/material/icon';
-import { MatSidenav, MatSidenavModule } from '@angular/material/sidenav';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { BasicIconButtonComponent } from "../shared/basic-icon-button/basic-icon-button.component";
 
 @Component({
   selector: 'filter',
@@ -28,9 +28,9 @@ import { MatSidenav, MatSidenavModule } from '@angular/material/sidenav';
     ReactiveFormsModule,
     MonthSelectorComponent,
     MatButtonToggleModule,
-    MatIcon,
-    MatSidenavModule
-  ],
+    MatSidenavModule,
+    BasicIconButtonComponent
+],
 })
 export class FilterComponent {
   filterForm: FormGroup;
@@ -38,7 +38,7 @@ export class FilterComponent {
   filterPanelOpen: boolean = false;
 
   @Output() filtersChanged = new EventEmitter<any>();
-  @ViewChild('sidenav') sidenav!: MatSidenav;
+  @Output() toggle = new EventEmitter<boolean>();
 
   constructor(private fb: FormBuilder) {
     this.filterForm = this.fb.group({
@@ -52,7 +52,7 @@ export class FilterComponent {
 
   toggleFilterPanel() {
     this.filterPanelOpen = !this.filterPanelOpen;
-    this.sidenav.toggle();
+    this.toggle.emit(this.filterPanelOpen);
   }
 
   applyFilters(): void {
