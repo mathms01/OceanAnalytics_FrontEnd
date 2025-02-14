@@ -11,6 +11,7 @@ import esriConfig from '@arcgis/core/config';
 import GraphicsLayer from '@arcgis/core/layers/GraphicsLayer';
 import Graphic from '@arcgis/core/Graphic';
 import Point from '@arcgis/core/geometry/Point';
+import { firstValueFrom } from 'rxjs/internal/firstValueFrom';
 
 
 
@@ -132,12 +133,28 @@ export class MapComponent implements AfterViewInit {
     
       const popupTemplate = {
         title: `{species}`,
-        content: `
-          <b>Species:</b> {species}<br>
-          <img class="rect-img" src="{imageSrc}" alt=""/>
-          <b>Observed Date:</b> <br> {observedDate}<br>
-          <b>Coordinate : </b> <br> {coordinate}
-        `,
+        content: async (event: any) => {
+          const species = event.graphic.attributes.species;
+          
+          try {
+            const imageUrl = await firstValueFrom(this.whaleApi.getWhaleImage(species));
+            
+            return `
+              <b>Species:</b> ${species}<br>
+              <img class="rect-img" src="${imageUrl}" alt="Whale Image"/><br>
+              <b>Observed Date:</b> <br> ${event.graphic.attributes.observedDate}<br>
+              <b>Coordinate:</b> <br> ${event.graphic.attributes.coordinate}
+            `;
+          } catch (error) {
+            console.error("Erreur lors du chargement de l'image :", error);
+            return `
+              <b>Species:</b> ${species}<br>
+              <b>Observed Date:</b> <br> ${event.graphic.attributes.observedDate}<br>
+              <b>Coordinate:</b> <br> ${event.graphic.attributes.coordinate}<br>
+              <span style="color: red;">Impossible de charger l'image</span>
+            `;
+          }
+        }
       };
 
       return new Graphic({
