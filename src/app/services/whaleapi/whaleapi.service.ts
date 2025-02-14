@@ -14,6 +14,10 @@ export class WhaleService {
  getWhales(): Observable<WhaleInterface[]>{
     return this.http.get<WhaleInterface[]>(baseUrl);
   }
+
+  getWhaleImage(name: string): Observable<string>{
+    return this.http.get<string>("baseUrl");
+  }
   
   getWhalesWithFilters(queryParams: any): Observable<WhaleInterface[]> {
     const params = this.setParameter(queryParams);
