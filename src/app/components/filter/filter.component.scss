@@ -1,7 +1,7 @@
 .filter-container {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 8px;
   }
   
 mat-form-field {
@@ -37,9 +37,9 @@ margin-top: 16px;
 }
 
 .filter-sidebar {
-  height: 100vh;
+  height: 100%;
   width: 300px;
-  padding: 16px;
+  padding: 10px;
   background-color: #fff;
 }
 
