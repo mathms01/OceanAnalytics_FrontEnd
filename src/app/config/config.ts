@@ -1,7 +1,7 @@
 export const CONFIG = {
-    baseUrl: 'https://localhost:32771',
+    baseUrl: 'https://localhost:32773',
     endpoints: {
       getWhalesData: '/WhaleInformation/GetWhalesData',
-      getWhaleImage: '/WhaleInformation/PostWhaleInformation',
+      getWhaleImage: '/WhaleInformation/GetWhaleImage',
     },
   };
